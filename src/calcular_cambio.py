@@ -12,9 +12,14 @@ coding = utf-8
  de 5 cénts posible, luego de 2 y finalmente de 1 (para sumar el total)
 '''
 
-def calcular_cambio(pago):
+def calcular_cambio(pago=0):
+
+    assert isinstance(pago, int), "Error: El valor de pago debe ser un número entero."
    
     numeroDeMonedas = [0, 0, 0]
+
+    if pago <= 0:
+         return numeroDeMonedas
     
     if pago == 0:
         return [0, 0, 0]
@@ -31,7 +36,8 @@ def calcular_cambio(pago):
                 break
             else:
                 monedaIndex += 1
-
+                assert monedaIndex < len(tiposDeMonedas), "Error: No hay más tipos de monedas disponibles."
+    assert pago == 0, "Error: No se pudo calcular el cambio correctamente."
     return numeroDeMonedas
 
 #print(euros(8))
